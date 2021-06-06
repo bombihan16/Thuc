@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Find Note</title>
+</head>
+
+<body>
+<th:block ></th:block >
+<a th:href="@{/}" style="text-decoration: none">Home | &nbsp;</a> <a
+        th:if="${#request.userPrincipal != null}" th:href="@{/logout}"
+        style="text-decoration: none">Logout | &nbsp;</a> <a
+        th:if="${#request.userPrincipal != null}" th:href="@{/take_note}"
+        style="text-decoration: none">Take note | &nbsp;</a>
+
+<table border="1">
+  <tr>
+    <th>user id</th>
+    <th>title</th>
+    <th>content</th>
+    <th>date </th>
+  </tr>
+  <tr th:each="take_note : ${find_note}">
+    <td th:utext="${take_note.user_Id.userName}">...</td>
+    <td th:utext="${take_note.title}">...</td>
+    <td th:utext="${take_note.content}">...</td>
+    <td th:utext="${take_note.date_create}">...</td>
+  </tr>
+</table>
+
+
+</body>
+
+</html>

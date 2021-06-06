@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div xmlns:th="http://www.thymeleaf.org"
+     style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px;" th:fragment="header">
+
+    <a th:href="@{/}" style="text-decoration: none">Home | &nbsp;</a> <a
+        th:if="${#request.userPrincipal != null}" th:href="@{/logout}"
+        style="text-decoration: none">Logout | &nbsp;</a> <a
+        th:if="${#request.userPrincipal == null}" th:href="@{/login}"
+        style="text-decoration: none">Login | &nbsp;</a> <a
+        th:if="${#request.userPrincipal == null}" th:href="@{/register}"
+        style="text-decoration: none">Register | &nbsp;</a> <a
+        th:if="${#request.userPrincipal != null}" th:href="@{/take_note}"
+        style="text-decoration: none">Take Note | &nbsp;</a>
+
+
+
+
+</div>
+<table  border="1" th:if="${#request.userPrincipal != null}" xmlns:th="http://www.thymeleaf.org"
+        th:object="${listUser}">
+    <tr>
+        <th>id</th>
+        <th>username</th>
+        <th>role</th>
+        <th>enabled</th>
+    </tr>
+    <tr th:each="users : ${listUser}">
+        <td th:utext="${users.id}">...</td>
+        <td th:utext="${users.userName}">...</td>
+        <td th:utext="${users.role}">...</td>
+        <td th:utext="${users.enable}">...</td>
+    </tr>
+</table>
+</body>
+</html>
